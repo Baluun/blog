@@ -1,17 +1,14 @@
-type Blog = record
-{
+type Blog = record {
     title: text;
-    date: nat32;
+    date: nat64;
     content: text;
     tags: vec text;
-}
+};
 
+type Result = variant { Ok : text; Err : text; };
 
-service : 
-{
+service : {
     "greet": (text) -> (text) query;
-    "add_blog": (text, nat32, text, vec text) -> ();
-    "greet": () -> (vec Blog) query;
+    "add_blog": (text, text, vec text) -> (Result);
+    "get_blogs": () -> (vec Blog) query;
 }
-
-
